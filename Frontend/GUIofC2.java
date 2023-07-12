@@ -1,5 +1,5 @@
 package Frontend;
 
-public class deneme2 {
+public class GUIofC2 {
     
 }
