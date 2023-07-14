@@ -1,3 +1,4 @@
+package com.havelsan.backend;
 
 import java.io.*;
 import java.net.*;
@@ -5,7 +6,7 @@ import java.net.*;
 public class Server {
     private ServerSocket serverSocket;
     private Socket clientSocket;
-    private PrintWriter out;
+    //private PrintWriter out;
     private BufferedReader in;
     private static String msg;
 
@@ -19,17 +20,19 @@ public class Server {
     public String listen() throws IOException {
         clientSocket = serverSocket.accept();
 
-        out = new PrintWriter(clientSocket.getOutputStream(), true);
+        //out = new PrintWriter(clientSocket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
         msg = in.readLine();
         
-        if (msg.equals("-Q") == false) {
+        /*
+        if (msg.equals("0000000000000000000000000000000000000000000000000000000000000000") == false) {
             System.out.println(msg);
         }
-
+        */
+        
         in.close();
-        out.close();
+        //out.close();
 
         clientSocket.close();
 
