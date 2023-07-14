@@ -1,8 +1,12 @@
-package Simulator;
+package com.havelsan.simulator;
 
 import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
 import java.util.*;
+
+import com.havelsan.exceptions.NotSixtyFourBitDataException;
+import com.havelsan.exceptions.NullLineException;
+import com.havelsan.exceptions.EmptyFileException;
 
 public class FileReader {
 

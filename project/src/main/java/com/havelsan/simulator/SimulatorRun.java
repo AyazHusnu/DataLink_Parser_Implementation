@@ -1,7 +1,11 @@
-package Simulator;
+package com.havelsan.simulator;
 
 import java.io.IOException;
 import java.util.List;
+
+import com.havelsan.exceptions.EmptyFileException;
+import com.havelsan.exceptions.NotSixtyFourBitDataException;
+import com.havelsan.exceptions.NullLineException;
 
 public class SimulatorRun {
     public static void main(String[] args) throws IOException, NullPointerException{
@@ -9,22 +13,24 @@ public class SimulatorRun {
         /*
          * Read file names from the console
          */
+        Client client = new Client();
 
-        String fileName = "BinaryDataFiles/data_1.txt";
+        String fileName = "project\\src\\main\\java\\com\\havelsan\\binary_data\\data_1.txt";
+        
         
         try {
-        FileReader file = new FileReader(fileName);
-        
-        List<String> ls = file.readData(); 
-        for (int i = 0; i < ls.size(); i++) {
-            System.out.println(ls.get(i));
-            }
             
-        /* 
-        Client client = new Client();
-        client.startConnection("127.0.0.1", 5000);
-        client.sendMessage("-Q");
-        */
+            FileReader file = new FileReader(fileName);
+            List<String> ls = file.readData();
+
+            for (int i = 0; i < ls.size(); i++) {
+                client.startConnection("127.0.0.1", 5000);
+
+                String msg = ls.get(i);
+                client.sendMessage(msg);
+                
+                client.stopConnection();
+            }
 
         }
         catch (NullLineException e){
