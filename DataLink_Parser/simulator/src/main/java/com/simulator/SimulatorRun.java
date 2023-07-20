@@ -15,7 +15,7 @@ public class SimulatorRun {
          */
         Client client = new Client();
 
-        String fileName = "D:\\HAVELSAN\\DataLink_Parser\\simulator\\src\\main\\java\\com\\simulator\\binary_data\\data_1.txt";
+        String fileName = "src\\main\\java\\com\\simulator\\binary_data\\data_1.txt";
         
         
         try {
