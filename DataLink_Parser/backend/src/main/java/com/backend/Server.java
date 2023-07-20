@@ -24,10 +24,10 @@ public class Server {
 
         msg = in.readLine();
         
-        
-        if (msg.equals("0000000000000000000000000000000000000000000000000000000000000000") == false) {
+        /* if (msg.equals("0000000000000000000000000000000000000000000000000000000000000000") == false) {
             System.out.println(msg);
-        }
+        }*/
+        
         
         
         in.close();
