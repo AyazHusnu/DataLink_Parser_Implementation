@@ -1,38 +1,80 @@
 package com.frontend;
 
+
+import java.util.Scanner;
+
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
-/**
- * JavaFX App
- */
 public class App extends Application {
 
-    private static Scene scene;
+    private VBox vbox;
 
     @Override
-    public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
-        stage.setScene(scene);
-        stage.show();
+    public void start(Stage primaryStage) {
+
+        vbox = new VBox(10); // 10: Differentiates the distance between labels.
+        vbox.setBackground(new Background(new BackgroundFill(Color.ORANGE, null, null)));
+        
+        Scene scene = new Scene(vbox, 600, 600);
+
+        primaryStage.setTitle("GUI");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+        // Start a new thread to read input and update the GUI
+        new Thread(() -> {
+            for (int i = 0; i < 3; i++) {
+                Track track = initializeTrackFromConsole();
+                updateLabels(track);
+            }
+        }).start();
     }
 
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+    public void updateLabels(Track track) {
+        // Update the GUI on the JavaFX Application Thread using Platform.runLater
+        Platform.runLater(() -> {
+            Label trackLabel = new Label();
+            trackLabel.setText("Track ID: " + track.get_trackID() +
+                               "\nTrack Heading: " + track.get_trackHeading() +
+                               "\nTrack Speed: " + track.get_trackSpeed() +
+                               "\nTrack Latitude: " + track.get_trackLatitude() +
+                               "\nTrack Longitude: " + track.get_trackLongitude());
+            vbox.getChildren().addAll(trackLabel);
+        });
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
+    public Track initializeTrackFromConsole() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter Track ID: ");
+        int trackID = scanner.nextInt();
+
+        System.out.println("Enter Track Heading: ");
+        int trackHeading = scanner.nextInt();
+
+        System.out.println("Enter Track Speed: ");
+        int trackSpeed = scanner.nextInt();
+
+        System.out.println("Enter Track Latitude: ");
+        short trackLatitude = scanner.nextShort();
+
+        System.out.println("Enter Track Longitude: ");
+        short trackLongitude = scanner.nextShort();
+
+        // Create the track object
+        Track track = new Track(trackID, trackHeading, trackSpeed, trackLatitude, trackLongitude);
+        return track;
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
-
 }
