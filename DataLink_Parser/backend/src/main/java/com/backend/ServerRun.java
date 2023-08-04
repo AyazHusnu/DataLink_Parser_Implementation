@@ -14,26 +14,32 @@ public class ServerRun {
         List <Track> list_tracks = new ArrayList<Track>();
     
         server.start(5000);
+        
         while(true) {
 
-            binaryData = server.listen();
+            try {
+                binaryData = server.listen(); // Awaiting for simulator
 
-            if (binaryData.equals("0000000000000000000000000000000000000000000000000000000000000000")) {
-                break;
+                if (binaryData.equals("0000000000000000000000000000000000000000000000000000000000000000")) {
+                    break;
+                }
+                
+                credentials = dataParser.parse(binaryData);
+
+                Track track = new Track(
+                    credentials.get_trackID(),
+                    credentials.get_trackHeading(),
+                    credentials.get_trackSpeed(),
+                    credentials.get_trackLatitude(),
+                    credentials.get_trackLongitude());
+                
+                list_tracks.add(track);
+            } catch (java.net.SocketTimeoutException e) {
+                System.out.println(e);
             }
-            
-            credentials = dataParser.parse(binaryData);
 
-            Track track = new Track(
-                credentials.get_trackID(),
-                credentials.get_trackHeading(),
-                credentials.get_trackSpeed(),
-                credentials.get_trackLatitude(),
-                credentials.get_trackLongitude());
-            
-            list_tracks.add(track);
-            System.out.println(list_tracks.size());
         }
+        
         server.stop();
     }
 }
