@@ -5,34 +5,23 @@ import java.net.*;
 public class Server {
     private ServerSocket serverSocket;
     private Socket clientSocket;
-    //private PrintWriter out;
     private BufferedReader in;
     private static String msg;
+    private int waitingSecs = 5;
 
     public void start(int port) throws IOException{
-
         System.out.println("--------SERVER STARTED--------");
-
         serverSocket = new ServerSocket(port);
+        serverSocket.setSoTimeout(waitingSecs * 1000);
     }
 
     public String listen() throws IOException {
         clientSocket = serverSocket.accept();
 
-        //out = new PrintWriter(clientSocket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-
         msg = in.readLine();
-        
-        /* if (msg.equals("0000000000000000000000000000000000000000000000000000000000000000") == false) {
-            System.out.println(msg);
-        }*/
-        
-        
-        
         in.close();
-        //out.close();
-
+        
         clientSocket.close();
         return msg;
     }

@@ -1,14 +1,19 @@
 syntax = "proto3";
 option java_multiple_files = true;
-package com.backend.protocomp;
+package protocomp;
 
-message HelloRequest {
-    string firstName = 1;
-    string lastName = 2;
+service Greeter {
+   rpc greet (TrackRequest) returns (TrackMessage) {}
 }
-message HelloResponse {
-    string greeting = 1;
+
+message TrackMessage {
+   int32 trackID = 1;
+   int32 trackHeading = 2;
+   int32 trackSpeed = 3;
+   sint32 trackLatitude = 4;
+   sint32 trackLongitude = 5;
 }
-service HelloService {
-    rpc hello(HelloRequest) returns (HelloResponse);
+
+message TrackRequest {
+   string message = 1;
 }
