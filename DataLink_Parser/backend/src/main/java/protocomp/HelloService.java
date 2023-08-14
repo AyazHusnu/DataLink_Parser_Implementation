@@ -20,10 +20,10 @@ public final class HelloService {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_protocomp_TrackMessage_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_protocomp_TrackRequest_descriptor;
+    internal_static_protocomp_TrackResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_protocomp_TrackRequest_fieldAccessorTable;
+      internal_static_protocomp_TrackResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -38,10 +38,10 @@ public final class HelloService {
       "otocomp\"x\n\014TrackMessage\022\017\n\007trackID\030\001 \001(\005" +
       "\022\024\n\014trackHeading\030\002 \001(\005\022\022\n\ntrackSpeed\030\003 \001" +
       "(\005\022\025\n\rtrackLatitude\030\004 \001(\021\022\026\n\016trackLongit" +
-      "ude\030\005 \001(\021\"\037\n\014TrackRequest\022\017\n\007message\030\001 \001" +
-      "(\t2F\n\007Greeter\022;\n\005greet\022\027.protocomp.Track" +
-      "Request\032\027.protocomp.TrackMessage\"\000B\002P\001b\006" +
-      "proto3"
+      "ude\030\005 \001(\021\" \n\rTrackResponse\022\017\n\007message\030\001 " +
+      "\001(\t2G\n\007Greeter\022<\n\005greet\022\027.protocomp.Trac" +
+      "kMessage\032\030.protocomp.TrackResponse\"\000B\002P\001" +
+      "b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -53,11 +53,11 @@ public final class HelloService {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocomp_TrackMessage_descriptor,
         new java.lang.String[] { "TrackID", "TrackHeading", "TrackSpeed", "TrackLatitude", "TrackLongitude", });
-    internal_static_protocomp_TrackRequest_descriptor =
+    internal_static_protocomp_TrackResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_protocomp_TrackRequest_fieldAccessorTable = new
+    internal_static_protocomp_TrackResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_protocomp_TrackRequest_descriptor,
+        internal_static_protocomp_TrackResponse_descriptor,
         new java.lang.String[] { "Message", });
   }
 

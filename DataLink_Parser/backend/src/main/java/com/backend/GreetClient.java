@@ -1,4 +1,4 @@
-package com.frontend;
+package com.backend;
 
 import io.grpc.Channel;
 import io.grpc.ManagedChannel;
@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import protocomp.GreeterGrpc;
-import protocomp.TrackRequest;
+import protocomp.TrackResponse;
 import protocomp.TrackMessage;
 
 public class GreetClient {
@@ -20,17 +20,21 @@ public class GreetClient {
       blockingStub = GreeterGrpc.newBlockingStub(channel);
    }
  
-   public void makeGreeting(String greeting) {
+   public void makeGreeting(Track track1) {
 
-      logger.info("Sending greeting to server: " + greeting);
+      logger.info("Sending greeting to server: ");
 
-      TrackRequest request = TrackRequest.newBuilder()
-      .setMessage("Update Tracks")
-      .build();
+      TrackMessage request = TrackMessage.newBuilder()
+                              .setTrackID(track1.get_trackID())
+                              .setTrackHeading(track1.get_trackHeading())
+                              .setTrackSpeed(track1.get_trackSpeed())
+                              .setTrackLatitude(track1.get_trackLatitude())
+                              .setTrackLongitude(track1.get_trackLongitude())
+                              .build();
       
       logger.info("Sending to server: " + request);
 
-      TrackMessage response;
+      TrackResponse response;
 
       try {
          response = blockingStub.greet(request);
@@ -40,10 +44,10 @@ public class GreetClient {
          return;
       }
 
-      logger.info("Got following from the server: " + response.getTrackID());
+      logger.info("Got following from the server: " + response.getMessage());
    }
 
-   public static void main(String[] args) throws Exception {
+   /* public static void main(String[] args) throws Exception {
 
       String greeting = "Hello";
       String serverAddress = "localhost:50051";
@@ -54,10 +58,10 @@ public class GreetClient {
 
       try {
          GreetClient client = new GreetClient(channel);
-         client.makeGreeting(greeting);
+         client.makeGreeting();
       } 
       finally {
          channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
       }
-   }
+   } */
 }
