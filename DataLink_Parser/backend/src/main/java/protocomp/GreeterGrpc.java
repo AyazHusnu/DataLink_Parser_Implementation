@@ -15,29 +15,29 @@ public final class GreeterGrpc {
   public static final String SERVICE_NAME = "protocomp.Greeter";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<protocomp.TrackRequest,
-      protocomp.TrackMessage> getGreetMethod;
+  private static volatile io.grpc.MethodDescriptor<protocomp.TrackMessage,
+      protocomp.TrackResponse> getGreetMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "greet",
-      requestType = protocomp.TrackRequest.class,
-      responseType = protocomp.TrackMessage.class,
+      requestType = protocomp.TrackMessage.class,
+      responseType = protocomp.TrackResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<protocomp.TrackRequest,
-      protocomp.TrackMessage> getGreetMethod() {
-    io.grpc.MethodDescriptor<protocomp.TrackRequest, protocomp.TrackMessage> getGreetMethod;
+  public static io.grpc.MethodDescriptor<protocomp.TrackMessage,
+      protocomp.TrackResponse> getGreetMethod() {
+    io.grpc.MethodDescriptor<protocomp.TrackMessage, protocomp.TrackResponse> getGreetMethod;
     if ((getGreetMethod = GreeterGrpc.getGreetMethod) == null) {
       synchronized (GreeterGrpc.class) {
         if ((getGreetMethod = GreeterGrpc.getGreetMethod) == null) {
           GreeterGrpc.getGreetMethod = getGreetMethod =
-              io.grpc.MethodDescriptor.<protocomp.TrackRequest, protocomp.TrackMessage>newBuilder()
+              io.grpc.MethodDescriptor.<protocomp.TrackMessage, protocomp.TrackResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "greet"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  protocomp.TrackRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   protocomp.TrackMessage.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  protocomp.TrackResponse.getDefaultInstance()))
               .setSchemaDescriptor(new GreeterMethodDescriptorSupplier("greet"))
               .build();
         }
@@ -96,8 +96,8 @@ public final class GreeterGrpc {
 
     /**
      */
-    default void greet(protocomp.TrackRequest request,
-        io.grpc.stub.StreamObserver<protocomp.TrackMessage> responseObserver) {
+    default void greet(protocomp.TrackMessage request,
+        io.grpc.stub.StreamObserver<protocomp.TrackResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGreetMethod(), responseObserver);
     }
   }
@@ -131,8 +131,8 @@ public final class GreeterGrpc {
 
     /**
      */
-    public void greet(protocomp.TrackRequest request,
-        io.grpc.stub.StreamObserver<protocomp.TrackMessage> responseObserver) {
+    public void greet(protocomp.TrackMessage request,
+        io.grpc.stub.StreamObserver<protocomp.TrackResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGreetMethod(), getCallOptions()), request, responseObserver);
     }
@@ -156,7 +156,7 @@ public final class GreeterGrpc {
 
     /**
      */
-    public protocomp.TrackMessage greet(protocomp.TrackRequest request) {
+    public protocomp.TrackResponse greet(protocomp.TrackMessage request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGreetMethod(), getCallOptions(), request);
     }
@@ -180,8 +180,8 @@ public final class GreeterGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<protocomp.TrackMessage> greet(
-        protocomp.TrackRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<protocomp.TrackResponse> greet(
+        protocomp.TrackMessage request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGreetMethod(), getCallOptions()), request);
     }
@@ -207,8 +207,8 @@ public final class GreeterGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_GREET:
-          serviceImpl.greet((protocomp.TrackRequest) request,
-              (io.grpc.stub.StreamObserver<protocomp.TrackMessage>) responseObserver);
+          serviceImpl.greet((protocomp.TrackMessage) request,
+              (io.grpc.stub.StreamObserver<protocomp.TrackResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -232,8 +232,8 @@ public final class GreeterGrpc {
           getGreetMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
-              protocomp.TrackRequest,
-              protocomp.TrackMessage>(
+              protocomp.TrackMessage,
+              protocomp.TrackResponse>(
                 service, METHODID_GREET)))
         .build();
   }

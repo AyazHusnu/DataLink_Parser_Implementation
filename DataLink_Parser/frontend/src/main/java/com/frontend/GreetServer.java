@@ -1,4 +1,4 @@
-package com.backend;
+package com.frontend;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 import protocomp.GreeterGrpc;
-import protocomp.TrackRequest;
+import protocomp.TrackResponse;
 import protocomp.TrackMessage;
 
 public class GreetServer {
@@ -39,19 +39,12 @@ public class GreetServer {
    static class GreeterImpl extends GreeterGrpc.GreeterImplBase {
 
       @Override
-      public void greet(TrackRequest req, StreamObserver<TrackMessage> responseObserver) {
+      public void greet(TrackMessage req, StreamObserver<TrackResponse> responseObserver) {
          logger.info("Got request from client: ");
-
-         Track track1 = new Track(4,2,3,(short)15,(short)15);        
-            
-         TrackMessage reply = TrackMessage.newBuilder()
-                              .setTrackID(track1.get_trackID())
-                              .setTrackHeading(track1.get_trackHeading())
-                              .setTrackSpeed(track1.get_trackSpeed())
-                              .setTrackLatitude(track1.get_trackLatitude())
-                              .setTrackLongitude(track1.get_trackLongitude())
-                              .build();
-
+         System.out.println(req.toString());
+         TrackResponse reply = TrackResponse.newBuilder()
+         .setMessage("got it")
+         .build();
          responseObserver.onNext(reply);
          responseObserver.onCompleted();
       }
