@@ -1,0 +1,46 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "ServerRun",
+            "request": "launch",
+            "mainClass": "com.backend.ServerRun",
+            "projectName": "backend"
+        },
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "com.frontend.App",
+            "projectName": "frontend",
+            "vmArgs": "--module-path \"/home/ayaz/Downloads/openjfx-17.0.8_linux-x64_bin-sdk/javafx-sdk-17.0.8/lib\" --add-modules javafx.controls,javafx.fxml"
+
+        },
+        {
+            "type": "java",
+            "name": "GreetServer",
+            "request": "launch",
+            "mainClass": "com.frontend.GreetServer",
+            "projectName": "frontend"
+        },
+        {
+            "type": "java",
+            "name": "SimulatorRun",
+            "request": "launch",
+            "mainClass": "com.simulator.SimulatorRun",
+            "projectName": "simulator"
+        }
+    ]
+}
