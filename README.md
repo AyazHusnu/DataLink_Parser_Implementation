@@ -2,14 +2,12 @@
 
 This project focuses on parsing, interpreting, and visualizing a sample Tactical Data signal of the J.3.2 Air Track message type from Datalink 16's J-series messages received by the Link 16 terminal.
 
-## Features
+## Project Definition
 
-- Parsing and interpreting J.3.2 Air Track messages from Datalink 16's J-series messages.
-- Development of a simulator that generates a sample 64-bit J.3.2 Air Track message and sends it to a specific TCP port.
-- Implementation of a backend component that listens to the simulated data, parses, and interprets it.
-- User interface development using JavaFX on the frontend.
-- Utilization of gRPC for making method calls from the frontend to handle received and processed data on the backend.
-- Displaying the parsed and interpreted data on the screen.
+- We developed a simulator that generates a sample 64-bit J.3.2 Air Track message and sends this data to a specific TCP port.
+- Additionally, we implemented a backend component that listens to the data coming from the simulator, parses, and interprets this data.
+- As part of the project, we developed the user interface using JavaFX on the frontend. 
+- Using gRPC, we made method calls from the frontend for each received and processed data on the backend, then displayed the data on the screen.
 
 ## Installation and Usage
 
@@ -37,7 +35,6 @@ After running it, you will see that the server has started listening and is read
 
 6. To transmit different J.3.2 type Link 16 signals to port 5000 on the backend at 5-second intervals, you need to run the "SimulatorRun.java" file.
 In the graphical user interface, you will see that data from the same aircraft is updated, and data from different aircraft is added.
-
 
 
 
